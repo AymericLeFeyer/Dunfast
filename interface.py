@@ -16,28 +16,32 @@ class Interface(Frame):
         self.C = C
 
         # Création de nos widgets
-        self.message = Label(self, text="Dunfast")
-        self.message.pack()
+        self.frame = LabelFrame(self, borderwidth=2, relief=GROOVE, text="Dunfast")
 
-        self.bouton_quitter = Button(self, text="Quitter", command=self.fermer)
-        self.bouton_quitter.pack(side="left")
+        self.message_semaine = Label(self.frame, text="Semaine : ")
 
-        self.bouton_cliquer = Button(self, text="Creer les dossiers", command=self.creerLesDossiers)
-        self.bouton_cliquer.pack(side="right")
+        self.bouton_quitter = Button(self.frame, text="Quitter", command=self.fermer)
 
-        self.ligne_semaine = Entry(self, textvariable=self.num_semaine, width=10)
-        self.ligne_semaine.pack()
+        self.bouton_cliquer = Button(self.frame, text="Creer les dossiers", command=self.creerLesDossiers)
 
-        self.button_launch = Button(self, text="Creer le tableau", command=self.commencer)
-        self.button_launch.pack()
+        self.ligne_semaine = Spinbox(self.frame, textvariable=self.num_semaine, width=10, from_=0, to=55, increment=1)
+
+        self.button_launch = Button(self.frame, text="Creer le tableau", command=self.commencer)
+
+        self.frame.pack()
+
+        self.message_semaine.pack(padx=30)
+        self.ligne_semaine.pack(padx=30, pady=10)
+        self.bouton_cliquer.pack(padx=30, pady=10)
+        self.button_launch.pack(padx=30, pady=10)
+        self.bouton_quitter.pack(side="right", pady=30, padx=30)
 
     def fermer(self):
         self.quit()
         self.destroy()
 
     def creerLesDossiers(self):
-        createFolders(self.num_semaine.get(), self.ws, self.Lots)
+        createFolders(self.num_semaine.get(), self.ws, self.Lots, self.C)
 
     def commencer(self):
         start(self.num_semaine.get(), self.ws, self.Lots, self.C)
-

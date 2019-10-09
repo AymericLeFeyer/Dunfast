@@ -30,7 +30,7 @@ def tryTo(f, NumSemaine, ws, Lots, C):
 
 
 # Création des dossiers pour la semaine S
-def createFolders(s, ws, Lots):
+def createFolders(s, ws, Lots, C):
     print("Création des dossiers pour la semaine ...")
     semaine = "Semaine " + str(s)
     os.mkdir(semaine)
@@ -42,8 +42,8 @@ def createFolders(s, ws, Lots):
     os.mkdir(semaine + "/SCAFRUIT")
     os.mkdir(semaine + "/COMMENTAIRES")
     os.mkdir(semaine + "/FICHIERS_DYNAMAN")
-    CREATE_SCAFRUIT(s, ws, Lots)
-    CREATE_COMMENTS(s, ws, Lots)
+    CREATE_SCAFRUIT(s, ws, Lots, C)
+    CREATE_COMMENTS(s, ws, Lots, C)
     print("Dossiers créés, vous pouvez y introduire les différents documents")
 
 

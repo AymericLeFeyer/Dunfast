@@ -2,29 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c786f781-129c-4741-8ce2-50eb9024d044" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/other.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/containers.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/functions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Antilles.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Antilles.xlsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Antilles2.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Antilles2.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Semaine 2/Bloquer/a bloquer.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Semaine 2/Crossdock_ST_Direct/FSM 33 35 Liste cross dock sans tri direct.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Semaine 2/FRET_to_Dunk/FretToDunk er e.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Semaine 2/Fenes/FSM 33 35 colis spécifiques en planteur FENES.xls" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Semaine 2/Fenes/true.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Semaine 2/Zone_C/c.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Semaine 3/AUTRES_CONFIRMATIONS/Confirmations.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Semaine 3/Bloquer/blok.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Semaine 3/COMMENTAIRES/Commentaires.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Semaine 3/Crossdock_ST_Direct/DOMINGO 3537 Liste cross dock sans tri direct.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Semaine 3/FRET_to_Dunk/Confirmation Fruidor Dunkerque.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Semaine 3/Fenes/DOMINGO 35-37 colis spécifiques en planteur FENES.xls" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Semaine 3/Fenes/true.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Semaine 3/Zone_C/c.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Semaine 41/FENES/true.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Semaine 41/FENES/true.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dunfast.py" beforeDir="false" afterPath="$PROJECT_DIR$/dunfast.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/functions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/interface.py" beforeDir="false" afterPath="$PROJECT_DIR$/interface.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -114,7 +96,7 @@
       <workItem from="1570450663903" duration="8725000" />
       <workItem from="1570557057144" duration="6842000" />
       <workItem from="1570610498388" duration="2331000" />
-      <workItem from="1570644328188" duration="3763000" />
+      <workItem from="1570644328188" duration="6153000" />
     </task>
     <servers />
   </component>
