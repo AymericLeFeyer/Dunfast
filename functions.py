@@ -9,24 +9,28 @@ from tkinter import *
 
 
 def start(NumSemaine, ws, Lots, C):
-    tryTo(DYNAMAN, NumSemaine, ws, Lots, C)
-    tryTo(FRET, NumSemaine, ws, Lots, C)
-    tryTo(CROSS_ST_DIRECT, NumSemaine, ws, Lots, C)
-    tryTo(CENTRE_EMPOTAGE, NumSemaine, ws, Lots, C)
-    tryTo(LOTS_BLOQUES, NumSemaine, ws, Lots, C)
-    tryTo(FENES, NumSemaine, ws, Lots, C)
-    tryTo(SCAFRUIT, NumSemaine, ws, Lots, C)
+    tab = []
+    tab.append(tryTo(DYNAMAN, NumSemaine, ws, Lots, C) - 1)
+    tab.append(tryTo(FRET, NumSemaine, ws, Lots, C) - 1)
+    tab.append(tryTo(CROSS_ST_DIRECT, NumSemaine, ws, Lots, C))
+    tab.append(tryTo(CENTRE_EMPOTAGE, NumSemaine, ws, Lots, C))
+    tab.append(tryTo(LOTS_BLOQUES, NumSemaine, ws, Lots, C))
+    tab.append(tryTo(FENES, NumSemaine, ws, Lots, C))
+    tab.append(tryTo(SCAFRUIT, NumSemaine, ws, Lots, C))
     COMMENTS(NumSemaine, ws, Lots, C)
+
+    return tab
 
 
 # Appels des fonctions
 def tryTo(f, NumSemaine, ws, Lots, C):
     try:
-        f(NumSemaine, ws, Lots, C)
+        a = f(NumSemaine, ws, Lots, C)
     except Exception as exception:
         print("Il faut insérer le fichier dans le dossier " + str(f) + ". Erreur " + str(exception))
     else:
         print("Fichier " + str(f) + " accepté")
+        return a
 
 
 # Création des dossiers pour la semaine S
@@ -89,7 +93,7 @@ def DYNAMAN(NumSemaine, ws, Lots, C):
 
     print("Il y a un total de " + str(fruidor) + " containers")
 
-    return True
+    return fruidor + 1
 
 
 # Récupération des informations du fichier Fret
@@ -116,7 +120,7 @@ def FRET(NumSemaine, ws, Lots, C):
 
     print("Il y a " + str(francit) + " francite")
 
-    return True
+    return francit
 
 
 # Récupération des informations dans le fichier CrossDock, ST, Direct

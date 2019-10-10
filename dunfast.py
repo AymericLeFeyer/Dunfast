@@ -4,16 +4,16 @@ from tkinter import *
 
 from openpyxl import *
 
-import interface
 import containers
+import interface
+
 
 # Debut du programme
 
-C = containers.Containers()
+
 
 NumSemaine = 41
 Lots = []
-# createFolders(NumSemaine)
 
 # Création du vrai fichier principal
 
@@ -35,7 +35,7 @@ ws.column_dimensions['F'].width = 50
 
 # Creation et ouverture de la fenetre
 screen = Tk()
-interface = interface.Interface(screen, ws, Lots, C)
+interface = interface.Interface(screen, ws, Lots)
 interface.mainloop()
 interface.destroy()
 screen.destroy()
