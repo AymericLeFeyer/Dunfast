@@ -7,25 +7,26 @@ from openpyxl.styles import PatternFill
 
 from tkinter import *
 
+Lots = []
 
-def start(NumSemaine, ws, Lots, C):
+def start(NumSemaine, ws, C):
     tab = []
-    tab.append(tryTo(DYNAMAN, NumSemaine, ws, Lots, C) - 1)
-    tab.append(tryTo(FRET, NumSemaine, ws, Lots, C) - 1)
-    tab.append(tryTo(CROSS_ST_DIRECT, NumSemaine, ws, Lots, C))
-    tab.append(tryTo(CENTRE_EMPOTAGE, NumSemaine, ws, Lots, C))
-    tab.append(tryTo(LOTS_BLOQUES, NumSemaine, ws, Lots, C))
-    tab.append(tryTo(FENES, NumSemaine, ws, Lots, C))
-    tab.append(tryTo(SCAFRUIT, NumSemaine, ws, Lots, C))
-    COMMENTS(NumSemaine, ws, Lots, C)
+    tab.append(tryTo(DYNAMAN, NumSemaine, ws, C) - 1)
+    tab.append(tryTo(FRET, NumSemaine, ws, C) - 2)
+    tab.append(tryTo(CROSS_ST_DIRECT, NumSemaine, ws, C))
+    tab.append(tryTo(CENTRE_EMPOTAGE, NumSemaine, ws, C))
+    tab.append(tryTo(LOTS_BLOQUES, NumSemaine, ws, C))
+    tab.append(tryTo(FENES, NumSemaine, ws, C))
+    tab.append(tryTo(SCAFRUIT, NumSemaine, ws, C))
+    tab.append(tryTo(COMMENTS, NumSemaine, ws, C))
 
     return tab
 
 
 # Appels des fonctions
-def tryTo(f, NumSemaine, ws, Lots, C):
+def tryTo(f, NumSemaine, ws, C):
     try:
-        a = f(NumSemaine, ws, Lots, C)
+        a = f(NumSemaine, ws, C)
     except Exception as exception:
         print("Il faut insérer le fichier dans le dossier " + str(f) + ". Erreur " + str(exception))
     else:
@@ -34,7 +35,7 @@ def tryTo(f, NumSemaine, ws, Lots, C):
 
 
 # Création des dossiers pour la semaine S
-def createFolders(s, ws, Lots, C):
+def createFolders(s, ws, C):
     print("Création des dossiers pour la semaine ...")
     semaine = "Semaine " + str(s)
     os.mkdir(semaine)
@@ -46,8 +47,8 @@ def createFolders(s, ws, Lots, C):
     os.mkdir(semaine + "/SCAFRUIT")
     os.mkdir(semaine + "/COMMENTAIRES")
     os.mkdir(semaine + "/FICHIERS_DYNAMAN")
-    CREATE_SCAFRUIT(s, ws, Lots, C)
-    CREATE_COMMENTS(s, ws, Lots, C)
+    CREATE_SCAFRUIT(s, ws, C)
+    CREATE_COMMENTS(s, ws, C)
     print("Dossiers créés, vous pouvez y introduire les différents documents")
 
 
@@ -57,7 +58,7 @@ def remove_accents(input_str):
     return only_ascii
 
 
-def DYNAMAN(NumSemaine, ws, Lots, C):
+def DYNAMAN(NumSemaine, ws, C):
     a = os.listdir(r"Semaine " + str(NumSemaine) + "/FICHIERS_DYNAMAN")
     dyna1 = load_workbook(filename="Semaine " + str(NumSemaine) + "/FICHIERS_DYNAMAN/" + str(a[0]))
     dyna2 = load_workbook(filename="Semaine " + str(NumSemaine) + "/FICHIERS_DYNAMAN/" + str(a[1]))
@@ -97,7 +98,7 @@ def DYNAMAN(NumSemaine, ws, Lots, C):
 
 
 # Récupération des informations du fichier Fret
-def FRET(NumSemaine, ws, Lots, C):
+def FRET(NumSemaine, ws, C):
     a = os.listdir(r"Semaine " + str(NumSemaine) + "/FRET")
     fret = load_workbook(filename="Semaine " + str(NumSemaine) + "/FRET/" + str(a[0]))
     feuilleFret = fret.active
@@ -124,7 +125,7 @@ def FRET(NumSemaine, ws, Lots, C):
 
 
 # Récupération des informations dans le fichier CrossDock, ST, Direct
-def CROSS_ST_DIRECT(NumSemaine, ws, Lots, C):
+def CROSS_ST_DIRECT(NumSemaine, ws, C):
     cross_st_direct = 1
     b = os.listdir(r"Semaine " + str(NumSemaine) + "/CROSS_ST_DIRECT")
     cross = load_workbook(filename="Semaine " + str(NumSemaine) + "/CROSS_ST_DIRECT/" + str(b[0]))
@@ -185,11 +186,11 @@ def CROSS_ST_DIRECT(NumSemaine, ws, Lots, C):
                     ws['F' + str(index)].value = "CrossDock"
                 ws['C' + str(index)].value = "SQ"
 
-    return True
+    return [len(st), len(cross), len(direct)]
 
 
 # Récupération des informations pour le centre d'empotage
-def CENTRE_EMPOTAGE(NumSemaine, ws, Lots, C):
+def CENTRE_EMPOTAGE(NumSemaine, ws, C):
     c = os.listdir(r"Semaine " + str(NumSemaine) + "/CENTRE_EMPOTAGE")
     zoneC = load_workbook(filename="Semaine " + str(NumSemaine) + "/CENTRE_EMPOTAGE/" + str(c[0]))
     feuilleZoneC = zoneC.active
@@ -211,11 +212,11 @@ def CENTRE_EMPOTAGE(NumSemaine, ws, Lots, C):
 
     print("Il y a " + str(totalC) + " zone c")
 
-    return True
+    return totalC
 
 
 # Récupération des informations pour les lots bloqués
-def LOTS_BLOQUES(NumSemaine, ws, Lots, C):
+def LOTS_BLOQUES(NumSemaine, ws, C):
     d = os.listdir(r"Semaine " + str(NumSemaine) + "/LOTS_BLOQUES")
     bloquer = load_workbook(filename="Semaine " + str(NumSemaine) + "/LOTS_BLOQUES/" + str(d[0]))
     feuilleBloquer = bloquer.active
@@ -238,7 +239,7 @@ def LOTS_BLOQUES(NumSemaine, ws, Lots, C):
 
 
 # Récupérations des informations pour les contremarques spécifiques (fenes)
-def FENES(NumSemaine, ws, Lots, C):
+def FENES(NumSemaine, ws, C):
     e = os.listdir(r"Semaine " + str(NumSemaine) + "/FENES")
     p.save_book_as(file_name="Semaine " + str(NumSemaine) + "/FENES/" + str(e[0]),
                    dest_file_name="Semaine " + str(NumSemaine) + "/FENES/" + "true.xlsx")
@@ -265,7 +266,7 @@ def FENES(NumSemaine, ws, Lots, C):
 
 
 # Création du fichier Scafruit, à modifier par Dunfresh
-def CREATE_SCAFRUIT(NumSemaine, ws, Lots, C):
+def CREATE_SCAFRUIT(NumSemaine, ws, C):
     sf = Workbook()
     ss = sf.active
     ss.title = "Scafruit"
@@ -290,7 +291,7 @@ def CREATE_SCAFRUIT(NumSemaine, ws, Lots, C):
 
 
 # Récupération des informations pour le Scafruit
-def SCAFRUIT(NumSemaine, ws, Lots, C):
+def SCAFRUIT(NumSemaine, ws, C):
     f = os.listdir(r"Semaine " + str(NumSemaine) + "/SCAFRUIT")
     scaf = load_workbook(filename="Semaine " + str(NumSemaine) + "/SCAFRUIT/" + str(f[0]))
     feuilleScafruit = scaf.active
@@ -323,9 +324,11 @@ def SCAFRUIT(NumSemaine, ws, Lots, C):
             else:
                 ws['F' + str(j)].value += "+ SCAFRUIT " + str(Qte[ind]) + " " + str(Cat[ind]) + " en " + str(How[ind])
 
+    return len(Lot)
+
 
 # Création du fichier Commentaires, à modifier par Dunfresh
-def CREATE_COMMENTS(NumSemaine, ws, Lots, C):
+def CREATE_COMMENTS(NumSemaine, ws, C):
     pr = Workbook()
     ps = pr.active
     ps.title = "Commentaires"
@@ -352,41 +355,52 @@ def CREATE_COMMENTS(NumSemaine, ws, Lots, C):
 
 
 # Récupération des informations pour les Commentaires
-def COMMENTS(NumSemaine, ws, Lots, C):
+def COMMENTS(NumSemaine, ws, C):
     g = os.listdir(r"Semaine " + str(NumSemaine) + "/COMMENTAIRES")
     com = load_workbook(filename="Semaine " + str(NumSemaine) + "/COMMENTAIRES/" + str(g[0]))
     feuilleComments = com.active
 
+    tableau = [0, 0, 0, 0]
+
     for i in range(2, feuilleComments.max_row):
+        print(i)
+
         a = feuilleComments['A' + str(i)].value
 
         b = feuilleComments['B' + str(i)].value
         if b:
-            addComment(a, b, ws, Lots)
+            addComment(a, b, ws)
 
         b = feuilleComments['C' + str(i)].value
         if b:
-            addComment(a, "Appel SQ ", ws, Lots)
+            addComment(a, "Appel SQ ", ws)
+            tableau[0] += 1
 
         b = feuilleComments['D' + str(i)].value
         if b:
-            addComment(a, "Nexy ", ws, Lots)
+            addComment(a, "Nexy ", ws)
+            tableau[1] += 1
 
         b = feuilleComments['E' + str(i)].value
         if b:
-            addComment(a, "Poly orange ", ws, Lots)
+            addComment(a, "Poly orange ", ws)
+            tableau[2] += 1
 
         b = feuilleComments['F' + str(i)].value
         if b:
-            addComment(a, "Poly complet ", ws, Lots)
+            addComment(a, "Poly complet ", ws)
+            tableau[2] += 1
 
         b = feuilleComments['G' + str(i)].value
         if b:
-            addComment(a, "Prio ", ws, Lots)
+            addComment(a, "Prio ", ws)
+            tableau[3] += 1
+
+    return tableau
 
 
 # Ajouter les commentaires associes
-def addComment(n, c, ws, Lots):
+def addComment(n, c, ws):
     if n in Lots:
         if ws['F' + str(Lots.index(n))].value:
             ws['F' + str(Lots.index(n))].value += " + " + str(c)

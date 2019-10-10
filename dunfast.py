@@ -7,13 +7,11 @@ from openpyxl import *
 import containers
 import interface
 
-
 # Debut du programme
 
 
-
 NumSemaine = 41
-Lots = []
+
 
 # Création du vrai fichier principal
 
@@ -35,7 +33,7 @@ ws.column_dimensions['F'].width = 50
 
 # Creation et ouverture de la fenetre
 screen = Tk()
-interface = interface.Interface(screen, ws, Lots)
+interface = interface.Interface(screen, ws)
 interface.mainloop()
 interface.destroy()
 screen.destroy()

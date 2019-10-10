@@ -6,7 +6,6 @@
       <change beforePath="$PROJECT_DIR$/Antilles.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Antilles.xlsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Antilles2.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Antilles2.xlsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Semaine 41/FENES/true.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Semaine 41/FENES/true.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/containers.py" beforeDir="false" afterPath="$PROJECT_DIR$/containers.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dunfast.py" beforeDir="false" afterPath="$PROJECT_DIR$/dunfast.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/functions.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/interface.py" beforeDir="false" afterPath="$PROJECT_DIR$/interface.py" afterDir="false" />
@@ -79,6 +78,9 @@
       <module name="Dunfast" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -98,8 +100,8 @@
       <list>
         <item itemvalue="Python.dunfast" />
         <item itemvalue="Python.dunfast" />
-        <item itemvalue="Python.interface" />
         <item itemvalue="Python.dunfast" />
+        <item itemvalue="Python.interface" />
         <item itemvalue="Python.dunfast" />
       </list>
     </recent_temporary>
@@ -121,6 +123,7 @@
       <workItem from="1570610498388" duration="2331000" />
       <workItem from="1570644328188" duration="6284000" />
       <workItem from="1570723526979" duration="3293000" />
+      <workItem from="1570730611734" duration="2610000" />
     </task>
     <servers />
   </component>
