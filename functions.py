@@ -9,10 +9,11 @@ from tkinter import *
 
 Lots = []
 
+
 def start(NumSemaine, ws, C):
     tab = []
     tab.append(tryTo(DYNAMAN, NumSemaine, ws, C) - 1)
-    tab.append(tryTo(FRET, NumSemaine, ws, C) - 2)
+    tab.append(tryTo(FRET, NumSemaine, ws, C))
     tab.append(tryTo(CROSS_ST_DIRECT, NumSemaine, ws, C))
     tab.append(tryTo(CENTRE_EMPOTAGE, NumSemaine, ws, C))
     tab.append(tryTo(LOTS_BLOQUES, NumSemaine, ws, C))
@@ -106,20 +107,18 @@ def FRET(NumSemaine, ws, C):
     # Importations des informations du fichier Fret vers le fichier principal
 
     j = 2
-    francit = 2
+    francit = 0
 
-    for index in range(2, feuilleFret.max_row):
+    for index in range(2, feuilleFret.max_row + 1):
         if remove_accents(str(feuilleFret['F' + str(index)].value)) == b'reserve francite':
             C.francite.append(int(feuilleFret['E' + str(index)].value))
-            for j in range(2, ws.max_row):
+            for j in range(2, ws.max_row+1):
                 if ws['D' + str(j)].value in C.francite:
                     if ws['B' + str(j)].value:
                         pass
                     else:
                         ws['B' + str(j)].value = "F"
                         francit += 1
-
-    print("Il y a " + str(francit) + " francite")
 
     return francit
 
@@ -233,7 +232,7 @@ def LOTS_BLOQUES(NumSemaine, ws, C):
 
     for i in range(2, ws.max_row):
         if ws['D' + str(i)].value in dataBloquer:
-            ws['E' + str(i)].fill = greyFill
+            ws['G' + str(i)].value = "Oui"
 
     return True
 
@@ -403,7 +402,7 @@ def addComment(n, c, ws):
     w = 0
     if n in Lots:
         for i in range(2, ws.max_row):
-            if int(ws['D'+str(i)].value) == int(n):
+            if int(ws['D' + str(i)].value) == int(n):
                 w = i
                 break
 

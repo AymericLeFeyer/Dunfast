@@ -2,11 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c786f781-129c-4741-8ce2-50eb9024d044" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/creationTableau.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Antilles.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Antilles.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Antilles2.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Antilles2.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Semaine 41/COMMENTAIRES/.~lock.Commentaires.xlsx#" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Semaine 41/FENES/true.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Semaine 41/FENES/true.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dunfast.py" beforeDir="false" afterPath="$PROJECT_DIR$/dunfast.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/functions.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -40,6 +40,11 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="run.code.analysis.last.selected.profile" value="aDefault" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Aymeric\Documents\GitHub\Dunfast" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -77,6 +82,9 @@
       <module name="Dunfast" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -117,9 +125,9 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.dunfast" />
+        <item itemvalue="Python.dunfast" />
+        <item itemvalue="Python.dunfast" />
         <item itemvalue="Python.functions" />
-        <item itemvalue="Python.dunfast" />
-        <item itemvalue="Python.dunfast" />
         <item itemvalue="Python.dunfast" />
       </list>
     </recent_temporary>
@@ -143,7 +151,8 @@
       <workItem from="1570723526979" duration="3293000" />
       <workItem from="1570730611734" duration="2610000" />
       <workItem from="1570785575049" duration="314000" />
-      <workItem from="1570810525994" duration="739000" />
+      <workItem from="1570810525994" duration="969000" />
+      <workItem from="1570817079016" duration="11213000" />
     </task>
     <servers />
   </component>

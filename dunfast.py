@@ -2,27 +2,26 @@
 
 from tkinter import *
 
+import openpyxl
 from openpyxl import *
 
-import containers
+import creationTableau
 import interface
 
 # Debut du programme
 
-
 NumSemaine = 41
 
-
-# Création du vrai fichier principal
+# Création du fichier principal
 
 wb2 = Workbook()
-fn2 = "Antilles2.xlsx"
+fn2 = "Antilles.xlsx"
 ws2 = wb2.active
 ws2.title = "Antilles"
 
-# Création du nouvau fichier principal de la semaine
+# Création du nouvau fichier temporaire
 wb = Workbook()
-fn = "Antilles.xlsx"
+fn = "AntillesTemp.xlsx"
 ws = wb.active
 ws.title = "Antilles"
 
@@ -37,6 +36,8 @@ interface = interface.Interface(screen, ws)
 interface.mainloop()
 interface.destroy()
 screen.destroy()
+
+creationTableau.createNewTab(ws, ws2)
 
 wb.save(filename=fn)
 wb2.save(filename=fn2)
