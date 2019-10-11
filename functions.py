@@ -363,7 +363,6 @@ def COMMENTS(NumSemaine, ws, C):
     tableau = [0, 0, 0, 0]
 
     for i in range(2, feuilleComments.max_row):
-        print(i)
 
         a = feuilleComments['A' + str(i)].value
 
@@ -401,8 +400,14 @@ def COMMENTS(NumSemaine, ws, C):
 
 # Ajouter les commentaires associes
 def addComment(n, c, ws):
+    w = 0
     if n in Lots:
-        if ws['F' + str(Lots.index(n))].value:
-            ws['F' + str(Lots.index(n))].value += " + " + str(c)
+        for i in range(2, ws.max_row):
+            if int(ws['D'+str(i)].value) == int(n):
+                w = i
+                break
+
+        if ws['F' + str(w)].value:
+            ws['F' + str(w)].value += " + " + str(c)
         else:
-            ws['F' + str(Lots.index(n))].value = str(c)
+            ws['F' + str(w)].value = str(c)
