@@ -2,12 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c786f781-129c-4741-8ce2-50eb9024d044" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/creationTableau.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Antilles.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Antilles.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Semaine 41/FENES/true.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/Semaine 41/FENES/true.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Antilles.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Antilles2.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AntillesTemp.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Semaine 2/COMMENTAIRES/Commentaires.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Semaine 2/SCAFRUIT/Scafruit.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Semaine 41/CENTRE_EMPOTAGE/39-41 centre d empotage.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Semaine 41/COMMENTAIRES/Commentaires.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Semaine 41/CROSS_ST_DIRECT/FORT FLEUR D EPEE 39 41 Liste cross dock sans tri direct.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Semaine 41/FENES/FPDE 39 41 colis spécifiques en planteur FENES.xls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Semaine 41/FENES/true.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Semaine 41/FICHIERS_DYNAMAN/guad sem41.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Semaine 41/FICHIERS_DYNAMAN/mart sem41.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Semaine 41/FRET/FRET_to_DUNK_ANTILLES_201939 - Confirmation 39 - 41.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Semaine 41/LOTS_BLOQUES/lot bloquer.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Semaine 41/SCAFRUIT/Scafruit.xlsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/creationTableau.py" beforeDir="false" afterPath="$PROJECT_DIR$/creationTableau.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dunfast.py" beforeDir="false" afterPath="$PROJECT_DIR$/dunfast.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/functions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/interface.py" beforeDir="false" afterPath="$PROJECT_DIR$/interface.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -63,6 +77,9 @@
       <module name="Dunfast" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -153,6 +170,12 @@
       <workItem from="1570785575049" duration="314000" />
       <workItem from="1570810525994" duration="969000" />
       <workItem from="1570817079016" duration="11213000" />
+      <workItem from="1570879338482" duration="4607000" />
+      <workItem from="1571064730528" duration="6000" />
+      <workItem from="1571067141025" duration="3498000" />
+      <workItem from="1571076607895" duration="2080000" />
+      <workItem from="1571078790295" duration="632000" />
+      <workItem from="1571128070800" duration="1206000" />
     </task>
     <servers />
   </component>

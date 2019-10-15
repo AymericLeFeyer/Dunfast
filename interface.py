@@ -1,7 +1,12 @@
+import datetime
+
+import creationTableau
 from functions import *
 import containers
 
 C = containers.Containers()
+
+date = datetime.datetime.now()
 
 
 # Classe interface
@@ -9,18 +14,23 @@ class Interface(Frame):
     """Notre fenêtre principale.
     Tous les widgets sont stockés comme attributs de cette fenêtre."""
 
-    def __init__(self, fenetre, ws, **kwargs):
+    def __init__(self, fenetre, ws, wb2, ws2, **kwargs):
         Frame.__init__(self, fenetre, width=768, height=576, **kwargs)
         self.pack(fill=BOTH)
+
         self.num_semaine = IntVar()
+        self.num_semaine.set(datetime.datetime(date.year, date.month, date.day).isocalendar()[1])
 
         self.ws = ws
+        self.ws2 = ws2
+        self.wb2 = wb2
 
         self.total = []
 
-        # Création de nos widgets
+        # Création de nos frames
         self.frame = LabelFrame(self, borderwidth=2, relief=GROOVE, text="Dunfast")
         self.frame2 = LabelFrame(self, borderwidth=2, relief=GROOVE, text="Containers")
+        self.frame3 = LabelFrame(self, borderwidth=2, relief=GROOVE, text="Infos")
 
         self.message_semaine = Label(self.frame, text="Semaine : ", width=20)
         self.nb_containers = Label(self.frame2, text="Total : " + str(len(C.total)), width=20)
@@ -46,6 +56,7 @@ class Interface(Frame):
 
         self.frame.pack()
         self.frame2.pack()
+        self.frame3.pack()
 
         self.message_semaine.pack(padx=30)
         self.ligne_semaine.pack(padx=30, pady=10)
@@ -58,11 +69,28 @@ class Interface(Frame):
         self.destroy()
 
     def creerLesDossiers(self):
-        createFolders(self.num_semaine.get(), self.ws, C)
+        try:
+            createFolders(self.num_semaine.get(), self.ws, C)
+        except Exception as e:
+            Label(self.frame3, text="Ce dossier existe deja, supprime le puis retente. Erreur : " + str(e)).pack(padx=30)
+        else:
+            Label(self.frame3, text="Dossiers créés, vous pouvez y introduire les différents documents").pack(padx=30)
+
+
+
 
     def commencer(self):
-        self.total = start(self.num_semaine.get(), self.ws, C)
-        self.updateCompteurs()
+        try:
+            self.total = start(self.num_semaine.get(), self.ws, C, self)
+            self.updateCompteurs()
+            creationTableau.createNewTab(self.ws, self.ws2)
+            saveFile(self.num_semaine.get(), self.wb2)
+        except Exception as e:
+            Label(self.frame3, text="Erreur : " + str(e)).pack(padx=30)
+        else:
+            Label(self.frame3,
+                  text="Le tableau est généré dans [Semaine " + str(self.num_semaine.get()) + "/Antilles " + str(
+                      self.num_semaine.get()) + ".xlsx]").pack(padx=30)
 
     def updateCompteurs(self):
         self.nb_containers = Label(self.frame2, text="Total : " + str(self.total[0]) + " containers", width=20)
@@ -87,8 +115,12 @@ class Interface(Frame):
         self.nb_zone_a.pack(padx=30)
         self.nb_st.pack(padx=30)
         self.nb_cross.pack(padx=30)
+        self.nb_direct.pack(padx=30)
         self.nb_appel_sq.pack(padx=30)
         self.nb_nexy.pack(padx=30)
         self.nb_polybag.pack(padx=30)
         self.nb_prio.pack(padx=30)
 
+
+def printException(self, s):
+    Label(self.frame3, text=s).pack(padx=30)

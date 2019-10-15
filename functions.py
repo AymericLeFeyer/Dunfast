@@ -7,29 +7,32 @@ from openpyxl.styles import PatternFill
 
 from tkinter import *
 
+import interface
+
 Lots = []
 
 
-def start(NumSemaine, ws, C):
+def start(NumSemaine, ws, C, self):
     tab = []
-    tab.append(tryTo(DYNAMAN, NumSemaine, ws, C) - 1)
-    tab.append(tryTo(FRET, NumSemaine, ws, C))
-    tab.append(tryTo(CROSS_ST_DIRECT, NumSemaine, ws, C))
-    tab.append(tryTo(CENTRE_EMPOTAGE, NumSemaine, ws, C))
-    tab.append(tryTo(LOTS_BLOQUES, NumSemaine, ws, C))
-    tab.append(tryTo(FENES, NumSemaine, ws, C))
-    tab.append(tryTo(SCAFRUIT, NumSemaine, ws, C))
-    tab.append(tryTo(COMMENTS, NumSemaine, ws, C))
+    tab.append(tryTo(DYNAMAN, NumSemaine, ws, C, self) - 1)
+    tab.append(tryTo(FRET, NumSemaine, ws, C, self))
+    tab.append(tryTo(CROSS_ST_DIRECT, NumSemaine, ws, C, self))
+    tab.append(tryTo(CENTRE_EMPOTAGE, NumSemaine, ws, C, self))
+    tab.append(tryTo(LOTS_BLOQUES, NumSemaine, ws, C, self))
+    tab.append(tryTo(FENES, NumSemaine, ws, C, self))
+    tab.append(tryTo(SCAFRUIT, NumSemaine, ws, C, self))
+    tab.append(tryTo(COMMENTS, NumSemaine, ws, C, self))
 
     return tab
 
 
 # Appels des fonctions
-def tryTo(f, NumSemaine, ws, C):
+def tryTo(f, NumSemaine, ws, C, self):
     try:
         a = f(NumSemaine, ws, C)
     except Exception as exception:
-        print("Il faut insérer le fichier dans le dossier " + str(f) + ". Erreur " + str(exception))
+        interface.printException(self,
+                                 "Il faut insérer le fichier dans le dossier " + str(f) + ". Erreur " + str(exception))
     else:
         print("Fichier " + str(f) + " accepté")
         return a
@@ -38,18 +41,25 @@ def tryTo(f, NumSemaine, ws, C):
 # Création des dossiers pour la semaine S
 def createFolders(s, ws, C):
     print("Création des dossiers pour la semaine ...")
-    semaine = "Semaine " + str(s)
-    os.mkdir(semaine)
-    os.mkdir(semaine + "/FRET")
-    os.mkdir(semaine + "/CROSS_ST_DIRECT")
-    os.mkdir(semaine + "/FENES")
-    os.mkdir(semaine + "/CENTRE_EMPOTAGE")
-    os.mkdir(semaine + "/LOTS_BLOQUES")
-    os.mkdir(semaine + "/SCAFRUIT")
-    os.mkdir(semaine + "/COMMENTAIRES")
-    os.mkdir(semaine + "/FICHIERS_DYNAMAN")
-    CREATE_SCAFRUIT(s, ws, C)
-    CREATE_COMMENTS(s, ws, C)
+    semaine = "\Dunfast\Semaine " + str(s)
+    user = os.path.expanduser('~')
+
+    if not (os.path.isdir(user + "\Dunfast")):
+        os.mkdir(user + "\Dunfast")
+
+    if not (os.path.isdir(user + semaine)):
+        os.mkdir(user + semaine)
+
+    os.mkdir(user + semaine + "/FRET")
+    os.mkdir(user + semaine + "/CROSS_ST_DIRECT")
+    os.mkdir(user + semaine + "/FENES")
+    os.mkdir(user + semaine + "/CENTRE_EMPOTAGE")
+    os.mkdir(user + semaine + "/LOTS_BLOQUES")
+    os.mkdir(user + semaine + "/SCAFRUIT")
+    os.mkdir(user + semaine + "/COMMENTAIRES")
+    os.mkdir(user + semaine + "/FICHIERS_DYNAMAN")
+    CREATE_SCAFRUIT(s, ws, C, user + semaine)
+    CREATE_COMMENTS(s, ws, C, user + semaine)
     print("Dossiers créés, vous pouvez y introduire les différents documents")
 
 
@@ -60,9 +70,10 @@ def remove_accents(input_str):
 
 
 def DYNAMAN(NumSemaine, ws, C):
-    a = os.listdir(r"Semaine " + str(NumSemaine) + "/FICHIERS_DYNAMAN")
-    dyna1 = load_workbook(filename="Semaine " + str(NumSemaine) + "/FICHIERS_DYNAMAN/" + str(a[0]))
-    dyna2 = load_workbook(filename="Semaine " + str(NumSemaine) + "/FICHIERS_DYNAMAN/" + str(a[1]))
+    a = os.listdir(r""+os.path.expanduser('~')+"\Dunfast\Semaine " + str(NumSemaine) + "/FICHIERS_DYNAMAN")
+
+    dyna1 = load_workbook(filename=r""+os.path.expanduser('~')+"\Dunfast\Semaine " + str(NumSemaine) + "/FICHIERS_DYNAMAN/" + str(a[0]))
+    dyna2 = load_workbook(filename=r""+os.path.expanduser('~')+"\Dunfast\Semaine " + str(NumSemaine) + "/FICHIERS_DYNAMAN/" + str(a[1]))
     feuilleDyna1 = dyna1.active
     feuilleDyna2 = dyna2.active
 
@@ -100,8 +111,9 @@ def DYNAMAN(NumSemaine, ws, C):
 
 # Récupération des informations du fichier Fret
 def FRET(NumSemaine, ws, C):
-    a = os.listdir(r"Semaine " + str(NumSemaine) + "/FRET")
-    fret = load_workbook(filename="Semaine " + str(NumSemaine) + "/FRET/" + str(a[0]))
+    a = os.listdir(r""+os.path.expanduser('~')+"\Dunfast\Semaine " + str(NumSemaine) + "/FRET")
+
+    fret = load_workbook(filename=r""+os.path.expanduser('~')+"\Dunfast\Semaine " + str(NumSemaine) + "/FRET/" + str(a[0]))
     feuilleFret = fret.active
 
     # Importations des informations du fichier Fret vers le fichier principal
@@ -112,7 +124,7 @@ def FRET(NumSemaine, ws, C):
     for index in range(2, feuilleFret.max_row + 1):
         if remove_accents(str(feuilleFret['F' + str(index)].value)) == b'reserve francite':
             C.francite.append(int(feuilleFret['E' + str(index)].value))
-            for j in range(2, ws.max_row+1):
+            for j in range(2, ws.max_row + 1):
                 if ws['D' + str(j)].value in C.francite:
                     if ws['B' + str(j)].value:
                         pass
@@ -120,14 +132,17 @@ def FRET(NumSemaine, ws, C):
                         ws['B' + str(j)].value = "F"
                         francit += 1
 
+    if a[0] != 'Fret.xlsx':
+        os.rename(r""+os.path.expanduser('~')+"\Dunfast\Semaine " + str(NumSemaine) + "/FRET/" + a[0], r""+os.path.expanduser('~')+"\Dunfast\Semaine " + str(NumSemaine) + "/FRET/Fret.xlsx")
+
     return francit
 
 
 # Récupération des informations dans le fichier CrossDock, ST, Direct
 def CROSS_ST_DIRECT(NumSemaine, ws, C):
     cross_st_direct = 1
-    b = os.listdir(r"Semaine " + str(NumSemaine) + "/CROSS_ST_DIRECT")
-    cross = load_workbook(filename="Semaine " + str(NumSemaine) + "/CROSS_ST_DIRECT/" + str(b[0]))
+    b = os.listdir(r""+os.path.expanduser('~')+"\Dunfast\Semaine " + str(NumSemaine) + "/CROSS_ST_DIRECT")
+    cross = load_workbook(filename=r""+os.path.expanduser('~')+"\Dunfast\Semaine " + str(NumSemaine) + "/CROSS_ST_DIRECT/" + str(b[0]))
     feuilleCross = cross.active
 
     # Récupération des 3 catégories
@@ -190,8 +205,8 @@ def CROSS_ST_DIRECT(NumSemaine, ws, C):
 
 # Récupération des informations pour le centre d'empotage
 def CENTRE_EMPOTAGE(NumSemaine, ws, C):
-    c = os.listdir(r"Semaine " + str(NumSemaine) + "/CENTRE_EMPOTAGE")
-    zoneC = load_workbook(filename="Semaine " + str(NumSemaine) + "/CENTRE_EMPOTAGE/" + str(c[0]))
+    c = os.listdir(r""+os.path.expanduser('~')+"\Dunfast\Semaine " + str(NumSemaine) + "/CENTRE_EMPOTAGE")
+    zoneC = load_workbook(filename=r""+os.path.expanduser('~')+"\Dunfast\Semaine " + str(NumSemaine) + "/CENTRE_EMPOTAGE/" + str(c[0]))
     feuilleZoneC = zoneC.active
 
     totalC = 0
@@ -216,8 +231,8 @@ def CENTRE_EMPOTAGE(NumSemaine, ws, C):
 
 # Récupération des informations pour les lots bloqués
 def LOTS_BLOQUES(NumSemaine, ws, C):
-    d = os.listdir(r"Semaine " + str(NumSemaine) + "/LOTS_BLOQUES")
-    bloquer = load_workbook(filename="Semaine " + str(NumSemaine) + "/LOTS_BLOQUES/" + str(d[0]))
+    d = os.listdir(r""+os.path.expanduser('~')+"\Dunfast\Semaine " + str(NumSemaine) + "/LOTS_BLOQUES")
+    bloquer = load_workbook(filename=r""+os.path.expanduser('~')+"\Dunfast\Semaine " + str(NumSemaine) + "/LOTS_BLOQUES/" + str(d[0]))
     feuilleBloquer = bloquer.active
 
     greyFill = PatternFill(start_color='969696',
@@ -239,10 +254,10 @@ def LOTS_BLOQUES(NumSemaine, ws, C):
 
 # Récupérations des informations pour les contremarques spécifiques (fenes)
 def FENES(NumSemaine, ws, C):
-    e = os.listdir(r"Semaine " + str(NumSemaine) + "/FENES")
-    p.save_book_as(file_name="Semaine " + str(NumSemaine) + "/FENES/" + str(e[0]),
-                   dest_file_name="Semaine " + str(NumSemaine) + "/FENES/" + "true.xlsx")
-    spe = load_workbook(filename="Semaine " + str(NumSemaine) + "/FENES/true.xlsx")
+    e = os.listdir(r""+os.path.expanduser('~')+"\Dunfast\Semaine " + str(NumSemaine) + "/FENES")
+    p.save_book_as(file_name=r""+os.path.expanduser('~')+"\Dunfast\Semaine " + str(NumSemaine) + "/FENES/" + str(e[0]),
+                   dest_file_name=r""+os.path.expanduser('~')+"\Dunfast\Semaine " + str(NumSemaine) + "/FENES/" + "true.xlsx")
+    spe = load_workbook(filename=r""+os.path.expanduser('~')+"\Dunfast\Semaine " + str(NumSemaine) + "/FENES/true.xlsx")
     feuilleFenes = spe.active
 
     # Importations des informations du fichier Fenes vers le fichier principal
@@ -265,7 +280,7 @@ def FENES(NumSemaine, ws, C):
 
 
 # Création du fichier Scafruit, à modifier par Dunfresh
-def CREATE_SCAFRUIT(NumSemaine, ws, C):
+def CREATE_SCAFRUIT(NumSemaine, ws, C, path):
     sf = Workbook()
     ss = sf.active
     ss.title = "Scafruit"
@@ -286,13 +301,13 @@ def CREATE_SCAFRUIT(NumSemaine, ws, C):
     ss['G1'].value = "Catégorie ?"
     ss['H1'].value = "Par combien ?"
 
-    sf.save('Semaine ' + str(NumSemaine) + '/SCAFRUIT/Scafruit.xlsx')
+    sf.save(path + '/SCAFRUIT/Scafruit.xlsx')
 
 
 # Récupération des informations pour le Scafruit
 def SCAFRUIT(NumSemaine, ws, C):
-    f = os.listdir(r"Semaine " + str(NumSemaine) + "/SCAFRUIT")
-    scaf = load_workbook(filename="Semaine " + str(NumSemaine) + "/SCAFRUIT/" + str(f[0]))
+    f = os.listdir(r""+os.path.expanduser('~')+"\Dunfast\Semaine " + str(NumSemaine) + "/SCAFRUIT")
+    scaf = load_workbook(filename=r""+os.path.expanduser('~')+"\Dunfast\Semaine " + str(NumSemaine) + "/SCAFRUIT/" + str(f[0]))
     feuilleScafruit = scaf.active
     Lot = []
     Qte = []
@@ -327,7 +342,7 @@ def SCAFRUIT(NumSemaine, ws, C):
 
 
 # Création du fichier Commentaires, à modifier par Dunfresh
-def CREATE_COMMENTS(NumSemaine, ws, C):
+def CREATE_COMMENTS(NumSemaine, ws, C, path):
     pr = Workbook()
     ps = pr.active
     ps.title = "Commentaires"
@@ -350,13 +365,13 @@ def CREATE_COMMENTS(NumSemaine, ws, C):
     for i in range(2, 200):
         ps['A' + str(i)].value = int(i - 1)
 
-    pr.save('Semaine ' + str(NumSemaine) + '/COMMENTAIRES/Commentaires.xlsx')
+    pr.save(path + '/COMMENTAIRES/Commentaires.xlsx')
 
 
 # Récupération des informations pour les Commentaires
 def COMMENTS(NumSemaine, ws, C):
-    g = os.listdir(r"Semaine " + str(NumSemaine) + "/COMMENTAIRES")
-    com = load_workbook(filename="Semaine " + str(NumSemaine) + "/COMMENTAIRES/" + str(g[0]))
+    g = os.listdir(r""+os.path.expanduser('~')+"\Dunfast\Semaine " + str(NumSemaine) + "/COMMENTAIRES")
+    com = load_workbook(filename=r""+os.path.expanduser('~')+"\Dunfast\Semaine " + str(NumSemaine) + "/COMMENTAIRES/" + str(g[0]))
     feuilleComments = com.active
 
     tableau = [0, 0, 0, 0]
@@ -410,3 +425,7 @@ def addComment(n, c, ws):
             ws['F' + str(w)].value += " + " + str(c)
         else:
             ws['F' + str(w)].value = str(c)
+
+
+def saveFile(num, wb2):
+    wb2.save(filename=os.path.expanduser('~')+"\Dunfast\Semaine " + str(num) + "/Antilles " + str(num) + ".xlsx")

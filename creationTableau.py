@@ -104,7 +104,8 @@ def fillTableau(ws2, numColonne, a, Tablo, greyFill, i):
     ws2[str(openpyxl.utils.cell.get_column_letter(numColonne + 4)) + str(a)].border = thin_boder
     ws2[str(openpyxl.utils.cell.get_column_letter(numColonne + 5)) + str(a)].value = Tablo[i - 2].commentaire
     ws2[str(openpyxl.utils.cell.get_column_letter(numColonne + 5)) + str(a)].border = thin_boder
-    ws2[str(openpyxl.utils.cell.get_column_letter(numColonne + 4)) + str(a)].fill = greyFill
+    if Tablo[i - 2].bloque:
+        ws2[str(openpyxl.utils.cell.get_column_letter(numColonne + 4)) + str(a)].fill = greyFill
 
 
 def createTab(ws2):

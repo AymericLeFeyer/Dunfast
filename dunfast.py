@@ -32,12 +32,11 @@ ws.column_dimensions['F'].width = 50
 
 # Creation et ouverture de la fenetre
 screen = Tk()
-interface = interface.Interface(screen, ws)
+interface = interface.Interface(screen, ws, wb2, ws2)
 interface.mainloop()
 interface.destroy()
 screen.destroy()
 
-creationTableau.createNewTab(ws, ws2)
 
-wb.save(filename=fn)
-wb2.save(filename=fn2)
+
+
