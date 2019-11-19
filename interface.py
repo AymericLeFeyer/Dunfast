@@ -85,6 +85,7 @@ class Interface(Frame):
             self.updateCompteurs()
             creationTableau.createNewTab(self.ws, self.ws2)
             saveFile(self.num_semaine.get(), self.wb2)
+
         except Exception as e:
             Label(self.frame3, text="Erreur : " + str(e)).pack(padx=30)
         else:

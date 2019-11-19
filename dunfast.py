@@ -1,6 +1,7 @@
 # coding=utf-8
 
 from tkinter import *
+import os
 
 import openpyxl
 from openpyxl import *
@@ -36,6 +37,7 @@ interface = interface.Interface(screen, ws, wb2, ws2)
 interface.mainloop()
 interface.destroy()
 screen.destroy()
+wb.save(filename=os.path.expanduser('~') + "\Dunfast\Antilles.xlsx")
 
 
 

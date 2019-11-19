@@ -70,10 +70,14 @@ def remove_accents(input_str):
 
 
 def DYNAMAN(NumSemaine, ws, C):
-    a = os.listdir(r""+os.path.expanduser('~')+"\Dunfast\Semaine " + str(NumSemaine) + "/FICHIERS_DYNAMAN")
+    a = os.listdir(r"" + os.path.expanduser('~') + "\Dunfast\Semaine " + str(NumSemaine) + "/FICHIERS_DYNAMAN")
 
-    dyna1 = load_workbook(filename=r""+os.path.expanduser('~')+"\Dunfast\Semaine " + str(NumSemaine) + "/FICHIERS_DYNAMAN/" + str(a[0]))
-    dyna2 = load_workbook(filename=r""+os.path.expanduser('~')+"\Dunfast\Semaine " + str(NumSemaine) + "/FICHIERS_DYNAMAN/" + str(a[1]))
+    dyna1 = load_workbook(
+        filename=r"" + os.path.expanduser('~') + "\Dunfast\Semaine " + str(NumSemaine) + "/FICHIERS_DYNAMAN/" + str(
+            a[0]))
+    dyna2 = load_workbook(
+        filename=r"" + os.path.expanduser('~') + "\Dunfast\Semaine " + str(NumSemaine) + "/FICHIERS_DYNAMAN/" + str(
+            a[1]))
     feuilleDyna1 = dyna1.active
     feuilleDyna2 = dyna2.active
 
@@ -84,6 +88,7 @@ def DYNAMAN(NumSemaine, ws, C):
     j = 1
     fruidor = 0
 
+    print(feuilleDyna2.max_row + 1)
     for index in range(2, feuilleDyna2.max_row + 1):
         if ws['D' + str(j)].value != feuilleDyna2['E' + str(index)].value:
             j += 1
@@ -94,6 +99,7 @@ def DYNAMAN(NumSemaine, ws, C):
             # C.fruidor.append(int(feuilleDyna1['F' + str(index)].value))
             fruidor += 1
 
+    print(feuilleDyna1.max_row + 1)
     for index in range(2, feuilleDyna1.max_row + 1):
         if ws['D' + str(j)].value != feuilleDyna1['E' + str(index)].value:
             j += 1
@@ -111,9 +117,10 @@ def DYNAMAN(NumSemaine, ws, C):
 
 # Récupération des informations du fichier Fret
 def FRET(NumSemaine, ws, C):
-    a = os.listdir(r""+os.path.expanduser('~')+"\Dunfast\Semaine " + str(NumSemaine) + "/FRET")
+    a = os.listdir(r"" + os.path.expanduser('~') + "\Dunfast\Semaine " + str(NumSemaine) + "/FRET")
 
-    fret = load_workbook(filename=r""+os.path.expanduser('~')+"\Dunfast\Semaine " + str(NumSemaine) + "/FRET/" + str(a[0]))
+    fret = load_workbook(
+        filename=r"" + os.path.expanduser('~') + "\Dunfast\Semaine " + str(NumSemaine) + "/FRET/" + str(a[0]))
     feuilleFret = fret.active
 
     # Importations des informations du fichier Fret vers le fichier principal
@@ -133,7 +140,8 @@ def FRET(NumSemaine, ws, C):
                         francit += 1
 
     if a[0] != 'Fret.xlsx':
-        os.rename(r""+os.path.expanduser('~')+"\Dunfast\Semaine " + str(NumSemaine) + "/FRET/" + a[0], r""+os.path.expanduser('~')+"\Dunfast\Semaine " + str(NumSemaine) + "/FRET/Fret.xlsx")
+        os.rename(r"" + os.path.expanduser('~') + "\Dunfast\Semaine " + str(NumSemaine) + "/FRET/" + a[0],
+                  r"" + os.path.expanduser('~') + "\Dunfast\Semaine " + str(NumSemaine) + "/FRET/Fret.xlsx")
 
     return francit
 
@@ -141,8 +149,10 @@ def FRET(NumSemaine, ws, C):
 # Récupération des informations dans le fichier CrossDock, ST, Direct
 def CROSS_ST_DIRECT(NumSemaine, ws, C):
     cross_st_direct = 1
-    b = os.listdir(r""+os.path.expanduser('~')+"\Dunfast\Semaine " + str(NumSemaine) + "/CROSS_ST_DIRECT")
-    cross = load_workbook(filename=r""+os.path.expanduser('~')+"\Dunfast\Semaine " + str(NumSemaine) + "/CROSS_ST_DIRECT/" + str(b[0]))
+    b = os.listdir(r"" + os.path.expanduser('~') + "\Dunfast\Semaine " + str(NumSemaine) + "/CROSS_ST_DIRECT")
+    cross = load_workbook(
+        filename=r"" + os.path.expanduser('~') + "\Dunfast\Semaine " + str(NumSemaine) + "/CROSS_ST_DIRECT/" + str(
+            b[0]))
     feuilleCross = cross.active
 
     # Récupération des 3 catégories
@@ -205,8 +215,10 @@ def CROSS_ST_DIRECT(NumSemaine, ws, C):
 
 # Récupération des informations pour le centre d'empotage
 def CENTRE_EMPOTAGE(NumSemaine, ws, C):
-    c = os.listdir(r""+os.path.expanduser('~')+"\Dunfast\Semaine " + str(NumSemaine) + "/CENTRE_EMPOTAGE")
-    zoneC = load_workbook(filename=r""+os.path.expanduser('~')+"\Dunfast\Semaine " + str(NumSemaine) + "/CENTRE_EMPOTAGE/" + str(c[0]))
+    c = os.listdir(r"" + os.path.expanduser('~') + "\Dunfast\Semaine " + str(NumSemaine) + "/CENTRE_EMPOTAGE")
+    zoneC = load_workbook(
+        filename=r"" + os.path.expanduser('~') + "\Dunfast\Semaine " + str(NumSemaine) + "/CENTRE_EMPOTAGE/" + str(
+            c[0]))
     feuilleZoneC = zoneC.active
 
     totalC = 0
@@ -215,6 +227,9 @@ def CENTRE_EMPOTAGE(NumSemaine, ws, C):
 
     dataZoneC = [[cell.value for cell in row] for row in feuilleZoneC.rows]
     betterDataZoneC = np.ravel(dataZoneC)
+    for i in range(len(betterDataZoneC)):
+        if betterDataZoneC[i]:
+            betterDataZoneC[i] = int(str(betterDataZoneC[i]).replace("_", ""))
 
     for index in range(2, ws.max_row):
         if ws['D' + str(index)].value in betterDataZoneC:
@@ -231,8 +246,9 @@ def CENTRE_EMPOTAGE(NumSemaine, ws, C):
 
 # Récupération des informations pour les lots bloqués
 def LOTS_BLOQUES(NumSemaine, ws, C):
-    d = os.listdir(r""+os.path.expanduser('~')+"\Dunfast\Semaine " + str(NumSemaine) + "/LOTS_BLOQUES")
-    bloquer = load_workbook(filename=r""+os.path.expanduser('~')+"\Dunfast\Semaine " + str(NumSemaine) + "/LOTS_BLOQUES/" + str(d[0]))
+    d = os.listdir(r"" + os.path.expanduser('~') + "\Dunfast\Semaine " + str(NumSemaine) + "/LOTS_BLOQUES")
+    bloquer = load_workbook(
+        filename=r"" + os.path.expanduser('~') + "\Dunfast\Semaine " + str(NumSemaine) + "/LOTS_BLOQUES/" + str(d[0]))
     feuilleBloquer = bloquer.active
 
     greyFill = PatternFill(start_color='969696',
@@ -242,10 +258,10 @@ def LOTS_BLOQUES(NumSemaine, ws, C):
     # Importations des informations du fichier Lots bloqués vers le fichier principal
 
     dataBloquer = []
-    for i in range(2, feuilleBloquer.max_row):
+    for i in range(2, feuilleBloquer.max_row + 1):
         dataBloquer.append(feuilleBloquer['A' + str(i)].value)
 
-    for i in range(2, ws.max_row):
+    for i in range(2, ws.max_row + 1):
         if ws['D' + str(i)].value in dataBloquer:
             ws['G' + str(i)].value = "Oui"
 
@@ -254,10 +270,9 @@ def LOTS_BLOQUES(NumSemaine, ws, C):
 
 # Récupérations des informations pour les contremarques spécifiques (fenes)
 def FENES(NumSemaine, ws, C):
-    e = os.listdir(r""+os.path.expanduser('~')+"\Dunfast\Semaine " + str(NumSemaine) + "/FENES")
-    p.save_book_as(file_name=r""+os.path.expanduser('~')+"\Dunfast\Semaine " + str(NumSemaine) + "/FENES/" + str(e[0]),
-                   dest_file_name=r""+os.path.expanduser('~')+"\Dunfast\Semaine " + str(NumSemaine) + "/FENES/" + "true.xlsx")
-    spe = load_workbook(filename=r""+os.path.expanduser('~')+"\Dunfast\Semaine " + str(NumSemaine) + "/FENES/true.xlsx")
+    e = os.listdir(r"" + os.path.expanduser('~') + "\Dunfast\Semaine " + str(NumSemaine) + "/FENES")
+    spe = load_workbook(
+        filename=r"" + os.path.expanduser('~') + "\Dunfast\Semaine " + str(NumSemaine) + "/FENES/" + str(e[0]))
     feuilleFenes = spe.active
 
     # Importations des informations du fichier Fenes vers le fichier principal
@@ -306,8 +321,9 @@ def CREATE_SCAFRUIT(NumSemaine, ws, C, path):
 
 # Récupération des informations pour le Scafruit
 def SCAFRUIT(NumSemaine, ws, C):
-    f = os.listdir(r""+os.path.expanduser('~')+"\Dunfast\Semaine " + str(NumSemaine) + "/SCAFRUIT")
-    scaf = load_workbook(filename=r""+os.path.expanduser('~')+"\Dunfast\Semaine " + str(NumSemaine) + "/SCAFRUIT/" + str(f[0]))
+    f = os.listdir(r"" + os.path.expanduser('~') + "\Dunfast\Semaine " + str(NumSemaine) + "/SCAFRUIT")
+    scaf = load_workbook(
+        filename=r"" + os.path.expanduser('~') + "\Dunfast\Semaine " + str(NumSemaine) + "/SCAFRUIT/" + str(f[0]))
     feuilleScafruit = scaf.active
     Lot = []
     Qte = []
@@ -318,7 +334,7 @@ def SCAFRUIT(NumSemaine, ws, C):
     # Récupération des informations du fichier Scafruit.xlsx
 
     for i in range(2, feuilleScafruit.max_row):
-        Lot.append(feuilleScafruit['A' + str(i)].value)
+        Lot.append(int(str(feuilleScafruit['A' + str(i)].value).replace("_", "")))
         Qte.append(feuilleScafruit['B' + str(i)].value)
         Cat.append(feuilleScafruit['C' + str(i)].value)
         How.append(str(feuilleScafruit['D' + str(i)].value))
@@ -327,7 +343,7 @@ def SCAFRUIT(NumSemaine, ws, C):
             How[len(How) - 1] += " + " + str(feuilleScafruit['F' + str(i)].value) + " " + str(
                 feuilleScafruit['G' + str(i)].value) + " en " + str(feuilleScafruit['H' + str(i)].value)
 
-    for j in range(2, ws.max_row):
+    for j in range(2, ws.max_row ):
         if ws['D' + str(j)].value in Lot:
 
             ind = Lot.index(ws['D' + str(j)].value)
@@ -370,26 +386,29 @@ def CREATE_COMMENTS(NumSemaine, ws, C, path):
 
 # Récupération des informations pour les Commentaires
 def COMMENTS(NumSemaine, ws, C):
-    g = os.listdir(r""+os.path.expanduser('~')+"\Dunfast\Semaine " + str(NumSemaine) + "/COMMENTAIRES")
-    com = load_workbook(filename=r""+os.path.expanduser('~')+"\Dunfast\Semaine " + str(NumSemaine) + "/COMMENTAIRES/" + str(g[0]))
+    g = os.listdir(r"" + os.path.expanduser('~') + "\Dunfast\Semaine " + str(NumSemaine) + "/COMMENTAIRES")
+    com = load_workbook(
+        filename=r"" + os.path.expanduser('~') + "\Dunfast\Semaine " + str(NumSemaine) + "/COMMENTAIRES/" + str(g[0]))
     feuilleComments = com.active
 
     tableau = [0, 0, 0, 0]
 
-    for i in range(2, feuilleComments.max_row):
-
+    for i in range(2, feuilleComments.max_row + 1):
         a = feuilleComments['A' + str(i)].value
 
         b = feuilleComments['B' + str(i)].value
+
         if b:
             addComment(a, b, ws)
 
         b = feuilleComments['C' + str(i)].value
+
         if b:
             addComment(a, "Appel SQ ", ws)
             tableau[0] += 1
 
         b = feuilleComments['D' + str(i)].value
+
         if b:
             addComment(a, "Nexy ", ws)
             tableau[1] += 1
@@ -416,7 +435,7 @@ def COMMENTS(NumSemaine, ws, C):
 def addComment(n, c, ws):
     w = 0
     if n in Lots:
-        for i in range(2, ws.max_row):
+        for i in range(2, ws.max_row + 1):
             if int(ws['D' + str(i)].value) == int(n):
                 w = i
                 break
@@ -428,4 +447,6 @@ def addComment(n, c, ws):
 
 
 def saveFile(num, wb2):
-    wb2.save(filename=os.path.expanduser('~')+"\Dunfast\Semaine " + str(num) + "/Antilles " + str(num) + ".xlsx")
+    wb2.save(filename=os.path.expanduser('~') + "\Dunfast\Semaine " + str(num) + "/Antilles " + str(num) + ".xlsx")
+    if num == 0:
+        pass
