@@ -3,21 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c786f781-129c-4741-8ce2-50eb9024d044" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/dunfast/Analysis-00.toc" beforeDir="false" afterPath="$PROJECT_DIR$/build/dunfast/Analysis-00.toc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/dunfast/COLLECT-00.toc" beforeDir="false" afterPath="$PROJECT_DIR$/build/dunfast/COLLECT-00.toc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/dunfast/EXE-00.toc" beforeDir="false" afterPath="$PROJECT_DIR$/build/dunfast/EXE-00.toc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/dunfast/PKG-00.pkg" beforeDir="false" afterPath="$PROJECT_DIR$/build/dunfast/PKG-00.pkg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/dunfast/PYZ-00.pyz" beforeDir="false" afterPath="$PROJECT_DIR$/build/dunfast/PYZ-00.pyz" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/dunfast/PYZ-00.toc" beforeDir="false" afterPath="$PROJECT_DIR$/build/dunfast/PYZ-00.toc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/dunfast/base_library.zip" beforeDir="false" afterPath="$PROJECT_DIR$/build/dunfast/base_library.zip" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/dunfast/dunfast.exe" beforeDir="false" afterPath="$PROJECT_DIR$/build/dunfast/dunfast.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/dunfast/warn-dunfast.txt" beforeDir="false" afterPath="$PROJECT_DIR$/build/dunfast/warn-dunfast.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dunfast/VCRUNTIME140.dll" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dunfast/VCRUNTIME140.dll" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dunfast/base_library.zip" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dunfast/base_library.zip" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dist/dunfast/dunfast.exe" beforeDir="false" afterPath="$PROJECT_DIR$/dist/dunfast/dunfast.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dunfast.py" beforeDir="false" afterPath="$PROJECT_DIR$/dunfast.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/functions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/interface.py" beforeDir="false" afterPath="$PROJECT_DIR$/interface.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -172,6 +158,7 @@
       <workItem from="1572872333406" duration="8443000" />
       <workItem from="1572960969261" duration="353000" />
       <workItem from="1574166503738" duration="2708000" />
+      <workItem from="1574169577175" duration="363000" />
     </task>
     <servers />
   </component>

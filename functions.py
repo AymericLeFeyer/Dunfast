@@ -333,7 +333,7 @@ def SCAFRUIT(NumSemaine, ws, C):
 
     # Récupération des informations du fichier Scafruit.xlsx
 
-    for i in range(2, feuilleScafruit.max_row):
+    for i in range(2, feuilleScafruit.max_row + 1):
         Lot.append(int(str(feuilleScafruit['A' + str(i)].value).replace("_", "")))
         Qte.append(feuilleScafruit['B' + str(i)].value)
         Cat.append(feuilleScafruit['C' + str(i)].value)
@@ -343,7 +343,7 @@ def SCAFRUIT(NumSemaine, ws, C):
             How[len(How) - 1] += " + " + str(feuilleScafruit['F' + str(i)].value) + " " + str(
                 feuilleScafruit['G' + str(i)].value) + " en " + str(feuilleScafruit['H' + str(i)].value)
 
-    for j in range(2, ws.max_row ):
+    for j in range(2, ws.max_row + 1):
         if ws['D' + str(j)].value in Lot:
 
             ind = Lot.index(ws['D' + str(j)].value)
