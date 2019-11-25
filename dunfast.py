@@ -33,6 +33,13 @@ ws.column_dimensions['F'].width = 50
 
 # Creation et ouverture de la fenetre
 screen = Tk()
+screen.title("Dunfast")
+screen.iconbitmap(r'logo.ico')
+logoDunfast = PhotoImage(file="logoTitle.png")
+cv = Canvas()
+cv.pack(side='bottom', fill='both', expand='no')
+cv.create_image(50, 0, image=logoDunfast, anchor='nw')
+
 interface = interface.Interface(screen, ws, wb2, ws2)
 interface.mainloop()
 interface.destroy()

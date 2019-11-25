@@ -15,6 +15,7 @@ class Interface(Frame):
     Tous les widgets sont stockés comme attributs de cette fenêtre."""
 
     def __init__(self, fenetre, ws, wb2, ws2, **kwargs):
+        credits = "LE FEYER Aymeric | Dunfast v1.4 | 25/11/2019"
         Frame.__init__(self, fenetre, width=768, height=576, **kwargs)
         self.pack(fill=BOTH)
 
@@ -47,22 +48,25 @@ class Interface(Frame):
         self.nb_prio = Label(self.frame2, text="Francite : " + str(len(C.francite)), width=20)
 
         self.bouton_quitter = Button(self.frame, text="Quitter", command=self.fermer)
+        self.creditsLabel = Label(self.frame, text=credits)
 
         self.bouton_cliquer = Button(self.frame, text="Creer les dossiers", command=self.creerLesDossiers)
 
-        self.ligne_semaine = Spinbox(self.frame, textvariable=self.num_semaine, width=10, from_=0, to=55, increment=1)
+        self.ligne_semaine = Spinbox(self.frame, textvariable=self.num_semaine, width=10, from_=1, to=57, increment=1)
 
         self.button_launch = Button(self.frame, text="Creer le tableau", command=self.commencer)
 
-        self.frame.pack()
-        self.frame2.pack()
         self.frame3.pack()
+
+        self.frame.pack(side=LEFT)
+        self.frame2.pack(side=RIGHT)
 
         self.message_semaine.pack(padx=30)
         self.ligne_semaine.pack(padx=30, pady=10)
         self.bouton_cliquer.pack(padx=30, pady=10)
         self.button_launch.pack(padx=30, pady=10)
         self.bouton_quitter.pack(side="right", pady=30, padx=30)
+        self.creditsLabel.pack(side="right", padx=30, pady=30)
 
     def fermer(self):
         self.quit()
@@ -72,12 +76,10 @@ class Interface(Frame):
         try:
             createFolders(self.num_semaine.get(), self.ws, C)
         except Exception as e:
-            Label(self.frame3, text="Ce dossier existe deja, supprime le puis retente. Erreur : " + str(e)).pack(padx=30)
+            Label(self.frame3, text="Ce dossier existe deja, supprime le puis retente. Erreur : " + str(e)).pack(
+                padx=30)
         else:
             Label(self.frame3, text="Dossiers créés, vous pouvez y introduire les différents documents").pack(padx=30)
-
-
-
 
     def commencer(self):
         try:
