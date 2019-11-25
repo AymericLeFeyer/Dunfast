@@ -1,11 +1,12 @@
 import os
+import unicodedata
 import numpy as np
 import pyexcel as p
+
 import unicodedata
+from tkinter import *
 from openpyxl import *
 from openpyxl.styles import PatternFill
-
-from tkinter import *
 
 import interface
 
@@ -22,6 +23,7 @@ def start(NumSemaine, ws, C, self):
     tab.append(tryTo(FENES, NumSemaine, ws, C, self))
     tab.append(tryTo(SCAFRUIT, NumSemaine, ws, C, self))
     tab.append(tryTo(COMMENTS, NumSemaine, ws, C, self))
+    tab.append(tryTo(POLYBAG, NumSemaine, ws, C, self))
 
     return tab
 
@@ -58,6 +60,7 @@ def createFolders(s, ws, C):
     os.mkdir(user + semaine + "/SCAFRUIT")
     os.mkdir(user + semaine + "/COMMENTAIRES")
     os.mkdir(user + semaine + "/FICHIERS_DYNAMAN")
+    os.mkdir(user + semaine + "/POLYBAG")
     CREATE_SCAFRUIT(s, ws, C, user + semaine)
     CREATE_COMMENTS(s, ws, C, user + semaine)
     print("Dossiers créés, vous pouvez y introduire les différents documents")
@@ -374,8 +377,8 @@ def CREATE_COMMENTS(NumSemaine, ws, C, path):
     ps['B1'].value = "Commentaire"
     ps['C1'].value = "Appel SQ"
     ps['D1'].value = "Nexy"
-    ps['E1'].value = "Polybag orange"
-    ps['F1'].value = "Polybag complet"
+    # ps['E1'].value = "Polybag orange"
+    # ps['F1'].value = "Polybag complet"
     ps['G1'].value = "Prio"
 
     for i in range(2, 200):
@@ -413,15 +416,15 @@ def COMMENTS(NumSemaine, ws, C):
             addComment(a, "Nexy ", ws)
             tableau[1] += 1
 
-        b = feuilleComments['E' + str(i)].value
-        if b:
-            addComment(a, "Poly orange ", ws)
-            tableau[2] += 1
-
-        b = feuilleComments['F' + str(i)].value
-        if b:
-            addComment(a, "Poly complet ", ws)
-            tableau[2] += 1
+        # b = feuilleComments['E' + str(i)].value
+        # if b:
+        #     addComment(a, "Poly orange ", ws)
+        #     tableau[2] += 1
+        #
+        # b = feuilleComments['F' + str(i)].value
+        # if b:
+        #     addComment(a, "Poly complet ", ws)
+        #     tableau[2] += 1
 
         b = feuilleComments['G' + str(i)].value
         if b:
@@ -444,6 +447,32 @@ def addComment(n, c, ws):
             ws['F' + str(w)].value += " + " + str(c)
         else:
             ws['F' + str(w)].value = str(c)
+
+
+# Polybags
+def POLYBAG(NumSemaine, ws, C):
+    p = os.listdir(r"" + os.path.expanduser('~') + "\Dunfast\Semaine " + str(NumSemaine) + "/POLYBAG")
+    poly = load_workbook(
+        filename=r"" + os.path.expanduser('~') + "\Dunfast\Semaine " + str(NumSemaine) + "/POLYBAG/" + str(p[0]))
+    feuillePoly = poly.active
+    nb = 0
+
+    containersPoly = []
+    letter = 'A'
+    for j in range(feuillePoly.max_column):
+
+        for i in range(2, feuillePoly.max_row + 1):
+            if feuillePoly[chr(ord(letter) + 1) + str(i)].value:
+                containersPoly.append(
+                    [feuillePoly[letter + str(i)].value, feuillePoly[chr(ord(letter) + 1) + str(i)].value])
+        letter = chr(int(ord(letter) + 2))
+        j += 1
+
+    for i in range(len(containersPoly)):
+        addComment(int(containersPoly[i][0]), "Polybag " + str(containersPoly[i][1]), ws)
+        nb += 1
+
+    return nb
 
 
 def saveFile(num, wb2):

@@ -106,7 +106,7 @@ class Interface(Frame):
         self.nb_direct = Label(self.frame2, text="Direct : " + str(self.total[2][2]) + " containers", width=20)
         self.nb_appel_sq = Label(self.frame2, text="Appel SQ : " + str(self.total[7][0]) + " containers", width=20)
         self.nb_nexy = Label(self.frame2, text="Nexy : " + str(self.total[7][1]) + " containers", width=20)
-        self.nb_polybag = Label(self.frame2, text="Polybag : " + str(self.total[7][2]) + " containers", width=20)
+        self.nb_polybag = Label(self.frame2, text="Polybag : " + str(self.total[8]) + " containers", width=20)
         self.nb_prio = Label(self.frame2, text="Prio : " + str(self.total[7][3]) + " containers", width=20)
 
         self.nb_containers.pack(padx=30)
