@@ -1,5 +1,8 @@
 import openpyxl
+import os
 from openpyxl.styles import PatternFill, Alignment, Font, Border, Side
+
+from openpyxl import *
 
 Tab = []
 
@@ -15,9 +18,10 @@ class AllContainer:
         self.commentaire = ''
 
 
-def createNewTab(ws, ws2):
+def createNewTab(ws, ws2, NumSemaine):
     takeInfos(ws)
     createTab(ws2)
+    createContainerTab(NumSemaine)
 
 
 def takeInfos(ws):
@@ -106,6 +110,40 @@ def fillTableau(ws2, numColonne, a, Tablo, greyFill, i):
     ws2[str(openpyxl.utils.cell.get_column_letter(numColonne + 5)) + str(a)].border = thin_boder
     if Tablo[i - 2].bloque:
         ws2[str(openpyxl.utils.cell.get_column_letter(numColonne + 4)) + str(a)].fill = greyFill
+
+def createContainerTab(NumSemaine):
+    Tableau = sorted(Tab, key=lambda container: container.num)
+    wb = Workbook()
+    fn = "Containers.xlsx"
+    ws = wb.active
+    ws.title = "Containers"
+    ws['A1'] = "numLot"
+    ws['B1'] = "numContainer"
+    ws['C1'] = "isSQ"
+    ws['D1'] = "isC"
+    ws['E1'] = "isF"
+    ws['F1'] = "isBloque"
+    ws['G1'] = "commentaires"
+
+    for i in range(len(Tableau)):
+        ws['A'+str(i+2)] = Tableau[i].lot
+        ws['B'+str(i+2)] = Tableau[i].num
+        if Tableau[i].sq:
+            ws['C'+str(i+2)] = 1
+        if Tableau[i].centre_empotage:
+            ws['D'+str(i+2)] = 1
+        if Tableau[i].francite:
+            ws['E'+str(i+2)] = 1
+        if Tableau[i].bloque:
+            ws['F'+str(i+2)] = 1
+        ws['G'+str(i+2)] = Tableau[i].commentaire
+        
+
+
+
+
+
+    wb.save(filename=os.path.expanduser('~') + "\Dunfast\Semaine " + str(NumSemaine) + "\SMARTFRESH\Containers.xlsx")
 
 
 def createTab(ws2):

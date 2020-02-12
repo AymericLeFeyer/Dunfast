@@ -45,7 +45,3 @@ interface.mainloop()
 interface.destroy()
 screen.destroy()
 wb.save(filename=os.path.expanduser('~') + "\Dunfast\Antilles.xlsx")
-
-
-
-

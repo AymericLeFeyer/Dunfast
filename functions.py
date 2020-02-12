@@ -139,11 +139,7 @@ def SCORES(NumSemaine, p1, C):
          ws['M'+str(id+1)] = feuilleScore2['L'+str(index)].value
          ws['N'+str(id+1)] = feuilleScore2['M'+str(index)].value
          id += 1
-
-
-
-
-
+         
     wb.save(filename=os.path.expanduser('~') + "\Dunfast\Semaine " + str(NumSemaine) + "\SMARTFRESH\Scores.xlsx")
 
 

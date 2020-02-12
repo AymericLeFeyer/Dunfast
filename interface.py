@@ -85,7 +85,7 @@ class Interface(Frame):
         try:
             self.total = start(self.num_semaine.get(), self.ws, C, self)
             self.updateCompteurs()
-            creationTableau.createNewTab(self.ws, self.ws2)
+            creationTableau.createNewTab(self.ws, self.ws2, self.num_semaine.get())
             saveFile(self.num_semaine.get(), self.wb2)
 
         except Exception as e:
