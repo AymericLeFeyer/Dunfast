@@ -24,6 +24,7 @@ def start(NumSemaine, ws, C, self):
     tab.append(tryTo(SCAFRUIT, NumSemaine, ws, C, self))
     tab.append(tryTo(COMMENTS, NumSemaine, ws, C, self))
     tab.append(tryTo(POLYBAG, NumSemaine, ws, C, self))
+    tryTo(SCORES, NumSemaine, ws, C, self)
 
     return tab
 
@@ -61,6 +62,8 @@ def createFolders(s, ws, C):
     os.mkdir(user + semaine + "/COMMENTAIRES")
     os.mkdir(user + semaine + "/FICHIERS_DYNAMAN")
     os.mkdir(user + semaine + "/POLYBAG")
+    os.mkdir(user + semaine + "/SCORES")
+    os.mkdir(user + semaine + "/SMARTFRESH")
     CREATE_SCAFRUIT(s, ws, C, user + semaine)
     CREATE_COMMENTS(s, ws, C, user + semaine)
     print("Dossiers créés, vous pouvez y introduire les différents documents")
@@ -71,6 +74,80 @@ def remove_accents(input_str):
     only_ascii = nfkd_form.encode('ASCII', 'ignore')
     return only_ascii
 
+def SCORES(NumSemaine, p1, C):
+    a = os.listdir(r"" + os.path.expanduser('~') + "\Dunfast\Semaine " + str(NumSemaine) + "/SCORES")
+    score1 = load_workbook(filename=r"" + os.path.expanduser('~') + "\Dunfast\Semaine " + str(NumSemaine) + "/SCORES/" + str(
+            a[0]))
+
+    score2 = load_workbook(filename=r"" + os.path.expanduser('~') + "\Dunfast\Semaine " + str(NumSemaine) + "/SCORES/" + str(
+            a[1]))
+
+    feuilleScore1 = score1.active
+    feuilleScore2 = score2.active
+
+    wb = Workbook()
+    fn = "Scores.xlsx"
+    ws = wb.active
+    ws.title = "Scores"
+
+    # Remplissage du tableau
+    id = 1
+    ws['A1'] = "idScore"
+    ws['B1'] = "tonnage"
+    ws['C1'] = "depotage"
+    ws['D1'] = "container"
+    ws['E1'] = "marque"
+    ws['F1'] = "produit"
+    ws['G1'] = "qteAnnonce"
+    ws['H1'] = "numLot"
+    ws['I1'] = "gestion"
+    ws['J1'] = "prio"
+    ws['K1'] = "info"
+    ws['L1'] = "resultat"
+    ws['M1'] = "mdc"
+    ws['N1'] = "ncc"
+
+    for index in range(4, feuilleScore1.max_row + 1):
+         ws['A'+str(id+1)] = int(id)
+         ws['B'+str(id+1)] = feuilleScore1['A'+str(index)].value
+         ws['C'+str(id+1)] = feuilleScore1['B'+str(index)].value
+         ws['D'+str(id+1)] = feuilleScore1['C'+str(index)].value
+         ws['E'+str(id+1)] = feuilleScore1['D'+str(index)].value
+         ws['F'+str(id+1)] = feuilleScore1['E'+str(index)].value
+         ws['G'+str(id+1)] = feuilleScore1['F'+str(index)].value
+         ws['H'+str(id+1)] = feuilleScore1['G'+str(index)].value
+         ws['I'+str(id+1)] = feuilleScore1['H'+str(index)].value
+         ws['J'+str(id+1)] = feuilleScore1['I'+str(index)].value
+         ws['K'+str(id+1)] = feuilleScore1['J'+str(index)].value
+         ws['L'+str(id+1)] = feuilleScore1['K'+str(index)].value
+         ws['M'+str(id+1)] = feuilleScore1['L'+str(index)].value
+         ws['N'+str(id+1)] = feuilleScore1['M'+str(index)].value
+         id += 1
+    for index in range(4, feuilleScore2.max_row + 1):
+         ws['A'+str(id+1)] = int(id)
+         ws['B'+str(id+1)] = feuilleScore2['A'+str(index)].value
+         ws['C'+str(id+1)] = feuilleScore2['B'+str(index)].value
+         ws['D'+str(id+1)] = feuilleScore2['C'+str(index)].value
+         ws['E'+str(id+1)] = feuilleScore2['D'+str(index)].value
+         ws['F'+str(id+1)] = feuilleScore2['E'+str(index)].value
+         ws['G'+str(id+1)] = feuilleScore2['F'+str(index)].value
+         ws['H'+str(id+1)] = feuilleScore2['G'+str(index)].value
+         ws['I'+str(id+1)] = feuilleScore2['H'+str(index)].value
+         ws['J'+str(id+1)] = feuilleScore2['I'+str(index)].value
+         ws['K'+str(id+1)] = feuilleScore2['J'+str(index)].value
+         ws['L'+str(id+1)] = feuilleScore2['K'+str(index)].value
+         ws['M'+str(id+1)] = feuilleScore2['L'+str(index)].value
+         ws['N'+str(id+1)] = feuilleScore2['M'+str(index)].value
+         id += 1
+
+
+
+
+
+    wb.save(filename=os.path.expanduser('~') + "\Dunfast\Semaine " + str(NumSemaine) + "\SMARTFRESH\Scores.xlsx")
+
+
+    
 
 def DYNAMAN(NumSemaine, ws, C):
     a = os.listdir(r"" + os.path.expanduser('~') + "\Dunfast\Semaine " + str(NumSemaine) + "/FICHIERS_DYNAMAN")
