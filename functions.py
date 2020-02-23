@@ -327,19 +327,35 @@ def LOTS_BLOQUES(NumSemaine, ws, C):
         filename=r"" + os.path.expanduser('~') + "\Dunfast\Semaine " + str(NumSemaine) + "/LOTS_BLOQUES/" + str(d[0]))
     feuilleBloquer = bloquer.active
 
-    greyFill = PatternFill(start_color='969696',
-                           end_color='969696',
-                           fill_type='solid')
+    lb = Workbook()
+    ls = lb.active
+    ls.title = "Lot Bloqués"
+    ls['A1'] = "id"
+    ls['B1'] = "numLot"
+    ls['C1'] = "numContainer"
+    ls['D1'] = "contremarque"
+    ls['E1'] = "categorie"
+    ls['F1'] = "quantite"
+    ls['G1'] = "operation"
 
     # Importations des informations du fichier Lots bloqués vers le fichier principal
 
     dataBloquer = []
     for i in range(2, feuilleBloquer.max_row + 1):
         dataBloquer.append(feuilleBloquer['A' + str(i)].value)
+        ls['A' + str(i)] = i - 1
+        ls['B' + str(i)] = feuilleBloquer['A' + str(i)].value
+        ls['C' + str(i)] = feuilleBloquer['C' + str(i)].value
+        ls['D' + str(i)] = feuilleBloquer['D' + str(i)].value
+        ls['E' + str(i)] = feuilleBloquer['E' + str(i)].value
+        ls['F' + str(i)] = feuilleBloquer['G' + str(i)].value
+        ls['G' + str(i)] = feuilleBloquer['F' + str(i)].value
 
     for i in range(2, ws.max_row + 1):
         if ws['D' + str(i)].value in dataBloquer:
             ws['G' + str(i)].value = "Oui"
+
+    lb.save(filename=os.path.expanduser('~') + "\Dunfast\Semaine " + str(NumSemaine) + "\SMARTFRESH\Bloqués.xlsx")
 
     return True
 
