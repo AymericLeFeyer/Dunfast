@@ -1,5 +1,5 @@
-Dunfast v1.5
-Date : 12/02/2020
+Dunfast v1.6
+Date : 23/02/2020
 Auteur : LE FEYER Aymeric
 Contact : https://www.linkedin.com/in/aymericlefeyer/
 Police utilisee pour le logo : https://www.dafont.com/fr/banana-yeti.font
