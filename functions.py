@@ -92,7 +92,7 @@ def SCORES(NumSemaine, p1, C):
 
     # Remplissage du tableau
     id = 1
-    ws['A1'] = "idScore"
+    ws['A1'] = "id"
     ws['B1'] = "tonnage"
     ws['C1'] = "depotage"
     ws['D1'] = "container"

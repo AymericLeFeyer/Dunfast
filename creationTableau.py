@@ -117,7 +117,7 @@ def createContainerTab(NumSemaine):
     fn = "Containers.xlsx"
     ws = wb.active
     ws.title = "Containers"
-    ws['A1'] = "numLot"
+    ws['A1'] = "id"
     ws['B1'] = "numContainer"
     ws['C1'] = "isSQ"
     ws['D1'] = "isC"
