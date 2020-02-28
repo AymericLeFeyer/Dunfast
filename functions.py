@@ -206,6 +206,7 @@ def FRET(NumSemaine, ws, C):
     ls['B1'] = "contremarque"
     ls['C1'] = "quantite"
     ls['D1'] = "produit"
+    ls['E1'] = "numLot"
 
     # Importations des informations du fichier Fret vers le fichier principal
 
@@ -214,10 +215,11 @@ def FRET(NumSemaine, ws, C):
 
     for index in range(2, feuilleFret.max_row + 1):
         if remove_accents(str(feuilleFret['F' + str(index)].value)) == b'reserve francite':
-            ls['A'+str(index)] = feuilleFret['E'+str(index)].value
+            ls['A'+str(index)] = index - 1
             ls['B'+str(index)] = feuilleFret['B'+str(index)].value
             ls['C'+str(index)] = feuilleFret['D'+str(index)].value
             ls['D'+str(index)] = feuilleFret['C'+str(index)].value
+            ls['E'+str(index)] = feuilleFret['E'+str(index)].value
             C.francite.append(int(feuilleFret['E' + str(index)].value))
             for j in range(2, ws.max_row + 1):
                 if ws['D' + str(j)].value in C.francite:

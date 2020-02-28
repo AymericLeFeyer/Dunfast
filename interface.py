@@ -15,7 +15,7 @@ class Interface(Frame):
     Tous les widgets sont stockés comme attributs de cette fenêtre."""
 
     def __init__(self, fenetre, ws, wb2, ws2, **kwargs):
-        credits = "LE FEYER Aymeric | Dunfast v1.8 | 28/02/2020"
+        credits = "LE FEYER Aymeric | Dunfast v1.9 | 28/02/2020"
         Frame.__init__(self, fenetre, width=768, height=576, **kwargs)
         self.pack(fill=BOTH)
 
