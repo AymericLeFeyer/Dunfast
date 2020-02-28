@@ -199,6 +199,14 @@ def FRET(NumSemaine, ws, C):
         filename=r"" + os.path.expanduser('~') + "\Dunfast\Semaine " + str(NumSemaine) + "/FRET/" + str(a[0]))
     feuilleFret = fret.active
 
+    lb = Workbook()
+    ls = lb.active
+    ls.title = "Francité"
+    ls['A1'] = "id"
+    ls['B1'] = "contremarque"
+    ls['C1'] = "quantite"
+    ls['D1'] = "produit"
+
     # Importations des informations du fichier Fret vers le fichier principal
 
     j = 2
@@ -206,6 +214,10 @@ def FRET(NumSemaine, ws, C):
 
     for index in range(2, feuilleFret.max_row + 1):
         if remove_accents(str(feuilleFret['F' + str(index)].value)) == b'reserve francite':
+            ls['A'+str(index)] = feuilleFret['E'+str(index)].value
+            ls['B'+str(index)] = feuilleFret['B'+str(index)].value
+            ls['C'+str(index)] = feuilleFret['D'+str(index)].value
+            ls['D'+str(index)] = feuilleFret['C'+str(index)].value
             C.francite.append(int(feuilleFret['E' + str(index)].value))
             for j in range(2, ws.max_row + 1):
                 if ws['D' + str(j)].value in C.francite:
@@ -219,6 +231,7 @@ def FRET(NumSemaine, ws, C):
         os.rename(r"" + os.path.expanduser('~') + "\Dunfast\Semaine " + str(NumSemaine) + "/FRET/" + a[0],
                   r"" + os.path.expanduser('~') + "\Dunfast\Semaine " + str(NumSemaine) + "/FRET/Fret.xlsx")
 
+    lb.save(filename=os.path.expanduser('~') + "\Dunfast\Semaine " + str(NumSemaine) + "\SMARTFRESH\Francité.xlsx")                  
     return francit
 
 
